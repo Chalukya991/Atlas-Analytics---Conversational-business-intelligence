@@ -1,0 +1,225 @@
+/* ---------------------------------------------------------------------------
+   Design tokens — Atlas Analytics
+   Single source of truth for color, type, space, radius, shadow and motion.
+   Light is the default; dark overrides live under [data-theme="dark"].
+--------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Brand ramps */
+  --indigo-50: #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #312e81;
+
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+
+  /* Neutrals */
+  --ink-950: #070b14;
+  --ink-900: #0b1220;
+  --ink-800: #111a2e;
+  --ink-700: #1b2740;
+  --ink-600: #2b3a57;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+
+  /* Semantic surfaces */
+  --bg-app: #f4f6fa;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #fbfcfe;
+  --bg-surface-3: #f6f8fb;
+  --bg-elevated: #ffffff;
+  --bg-inset: #f1f4f9;
+  --bg-sidebar: linear-gradient(180deg, #0b1220 0%, #0f1830 100%);
+  --bg-sidebar-glow: radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.22) 0%, transparent 55%);
+  --bg-user-bubble: linear-gradient(135deg, #4f46e5, #4338ca);
+
+  --border: #e6eaf2;
+  --border-strong: #d4dbe7;
+  --border-subtle: #eef1f6;
+
+  --text-1: #0f172a;
+  --text-2: #475569;
+  --text-3: #8592a6;
+  --text-on-brand: #ffffff;
+  --text-on-dark: #e7ecf5;
+  --text-on-dark-2: #8f9db5;
+
+  --brand: var(--indigo-600);
+  --brand-hover: var(--indigo-700);
+  --brand-soft: var(--indigo-50);
+  --brand-soft-2: var(--indigo-100);
+  --brand-text: var(--indigo-700);
+  --accent: var(--cyan-500);
+  --accent-soft: #ecfeff;
+
+  --success: #059669;
+  --success-soft: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #d97706;
+  --warning-soft: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+  --danger-border: #fecaca;
+  --info: #2563eb;
+  --info-soft: #eff6ff;
+  --info-border: #bfdbfe;
+
+  /* Charts */
+  --chart-1: #6366f1;
+  --chart-2: #22d3ee;
+  --chart-3: #f59e0b;
+  --chart-4: #10b981;
+  --chart-5: #ec4899;
+  --chart-6: #8b5cf6;
+  --chart-grid: #eef1f6;
+  --chart-axis: #8592a6;
+  --chart-negative: #f43f5e;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 2.75rem;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: -0.011em;
+  --tracking-wide: 0.06em;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.55;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 6px 16px -4px rgba(15, 23, 42, 0.1), 0 2px 6px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 16px 40px -12px rgba(15, 23, 42, 0.18), 0 6px 16px -6px rgba(15, 23, 42, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.22);
+  --shadow-brand: 0 8px 20px -8px rgba(79, 70, 229, 0.55);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 340ms;
+
+  /* Layout */
+  --sidebar-width: 248px;
+  --sidebar-width-collapsed: 68px;
+  --topbar-height: 60px;
+  --panel-width: 320px;
+  --thread-width: 880px;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-app: #0a0f1b;
+  --bg-surface: #111827;
+  --bg-surface-2: #131c2e;
+  --bg-surface-3: #0f1626;
+  --bg-elevated: #172035;
+  --bg-inset: #0d1424;
+  --bg-sidebar: linear-gradient(180deg, #070b14 0%, #0b1220 100%);
+  --bg-sidebar-glow: radial-gradient(120% 60% at 0% 0%, rgba(99, 102, 241, 0.28) 0%, transparent 55%);
+  --bg-user-bubble: linear-gradient(135deg, #4f46e5, #3730a3);
+
+  --border: #1f2a40;
+  --border-strong: #2a3752;
+  --border-subtle: #182235;
+
+  --text-1: #e6ebf5;
+  --text-2: #a3b0c6;
+  --text-3: #6e7d97;
+
+  --brand: var(--indigo-500);
+  --brand-hover: var(--indigo-400);
+  --brand-soft: rgba(99, 102, 241, 0.14);
+  --brand-soft-2: rgba(99, 102, 241, 0.24);
+  --brand-text: var(--indigo-300);
+  --accent-soft: rgba(34, 211, 238, 0.12);
+
+  --success: #34d399;
+  --success-soft: rgba(16, 185, 129, 0.12);
+  --success-border: rgba(16, 185, 129, 0.3);
+  --warning: #fbbf24;
+  --warning-soft: rgba(245, 158, 11, 0.12);
+  --warning-border: rgba(245, 158, 11, 0.3);
+  --danger: #f87171;
+  --danger-soft: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.3);
+  --info: #60a5fa;
+  --info-soft: rgba(59, 130, 246, 0.12);
+  --info-border: rgba(59, 130, 246, 0.3);
+
+  --chart-grid: #1f2a40;
+  --chart-axis: #6e7d97;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 16px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+  --shadow-focus: 0 0 0 3px rgba(129, 140, 248, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

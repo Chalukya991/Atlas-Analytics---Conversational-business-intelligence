@@ -1,0 +1,1 @@
+"""AI Business Analyst — Python calculation and data-analysis engine."""

@@ -1,0 +1,87 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: atlas
+      POSTGRES_PASSWORD: atlas
+      POSTGRES_DB: ai_ba
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U atlas -d ai_ba']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis:7-alpine
+    command: ['redis-server', '--maxmemory', '256mb', '--maxmemory-policy', 'noeviction']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    ports:
+      - '6379:6379'
+
+  api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    env_file: server/.env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://atlas:atlas@postgres:5432/ai_ba
+      REDIS_URL: redis://redis:6379
+      STORAGE_PATH: /data/storage
+      PYTHON_ENGINE_PATH: /app/python_engine
+      RUN_WORKERS: 'false'
+      TRUST_PROXY: 'true'
+    command: sh -c "npm run migrate && node src/index.js"
+    volumes:
+      - storage:/data/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - '4000:4000'
+
+  worker:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    env_file: server/.env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://atlas:atlas@postgres:5432/ai_ba
+      REDIS_URL: redis://redis:6379
+      STORAGE_PATH: /data/storage
+      PYTHON_ENGINE_PATH: /app/python_engine
+    command: node src/workers/worker.js
+    volumes:
+      - storage:/data/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      replicas: 1
+
+  web:
+    build:
+      context: client
+      args:
+        VITE_API_URL: http://localhost:4000/api/v1
+    ports:
+      - '5173:80'
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  storage:

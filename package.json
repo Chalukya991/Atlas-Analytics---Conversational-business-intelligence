@@ -1,0 +1,19 @@
+{
+  "name": "atlas-analytics",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Atlas Analytics — conversational business intelligence over spreadsheets (React + Express + Python engine)",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install && pip install -r python_engine/requirements.txt",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev:worker": "npm --prefix server run worker",
+    "migrate": "npm --prefix server run migrate",
+    "build": "npm --prefix client run build",
+    "test": "npm run test:engine && npm run test:server",
+    "test:engine": "cd python_engine && python -m pytest -q -p no:cacheprovider",
+    "test:server": "npm --prefix server test",
+    "smoke": "npm --prefix server run test:smoke"
+  },
+  "license": "UNLICENSED"
+}

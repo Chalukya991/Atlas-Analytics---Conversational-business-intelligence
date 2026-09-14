@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/ChalukyaS/Repos/**)",
+      "Bash(cd \"/c/Users/ChalukyaS/OneDrive - Onyx Technology, LLC/Documents/Default Project/server\" && echo \"=== worker-err tail ===\" && tail -c 4000 worker-err.log; echo; echo \"=== api-err tail ===\"; tail -c 3000 api-err.log; echo; echo \"=== worker.log grep failed/error \\(last 40\\) ===\"; grep -iE \"failed|error|retry\" worker.log | tail -40; echo; echo \"=== .env keys \\(names only\\) ===\"; sed -E 's/=.*/=<redacted>/' .env)",
+      "Bash(python -m pytest -q)",
+      "Bash(python -)",
+      "Bash(python -m pytest -q -p no:cacheprovider)",
+      "Bash(grep -E \"^\\(zod|joi|express-validator|bullmq|ioredis|pdfkit|exceljs|docx|jest|supertest|redis\\)$\")",
+      "Bash(grep -E \"^\\(recharts|react-router-dom|zustand|lucide-react|framer-motion|@tanstack|d3|chart.js|react-markdown|clsx\\)$\")",
+      "Bash(npm --version)",
+      "Bash(npx vite *)",
+      "Bash(node -e ' *)",
+      "Bash(grep -v \"^\\\\s*$\")",
+      "PowerShell($env:DATABASE_URL = \\(Get-Content .env | Where-Object { $_ -match '^DATABASE_URL=' }\\) -replace '^DATABASE_URL=',''; $u = [Uri]$env:DATABASE_URL; Write-Output \\(\"DB target: host={0} port={1} db={2} user={3}\" -f $u.Host, $u.Port, $u.AbsolutePath, \\($u.UserInfo -split ':'\\)[0]\\); $r = \\(Get-Content .env | Where-Object { $_ -match '^REDIS_URL=' }\\); Write-Output \"Redis: $r\"; Write-Output \"--- services ---\"; Get-Service | Where-Object { $_.Name -match 'postgres|redis|memurai|docker' } | Select-Object Name, Status | Format-Table -AutoSize | Out-String; Write-Output \"--- docker ---\"; try { docker --version; docker ps --format '{{.Names}} {{.Status}}' } catch { Write-Output \"docker unavailable: $_\" }; Write-Output \"--- listening ports 5432/6379 ---\"; Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $_.LocalPort -in 5432,6379 } | Select-Object LocalAddress, LocalPort | Format-Table -AutoSize | Out-String)",
+      "Read(//c/Program Files/**)",
+      "Bash(wsl -l -q)",
+      "Bash(docker start *)",
+      "Bash(npx knex *)",
+      "Bash(curl -s -m 5 http://localhost:4000/health)",
+      "PowerShell($log = \"C:\\\\Users\\\\ChalukyaS\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ChalukyaS-OneDrive---Onyx-Technology--LLC-Documents-Default-Project\\\\a1217be7-fa79-4ac8-83f8-a14487267068\\\\scratchpad\"; New-Item -ItemType Directory -Force $log | Out-Null; Get-Process node -ErrorAction SilentlyContinue | Where-Object { $_.Path -and $_.CommandLine -match 'src/index.js' } | Stop-Process -Force -ErrorAction SilentlyContinue; $p = Start-Process node -ArgumentList \"src/index.js\" -WorkingDirectory \\(Get-Location\\) -WindowStyle Hidden -RedirectStandardOutput \"$log\\\\api.log\" -RedirectStandardError \"$log\\\\api-err.log\" -PassThru; Write-Output \"started pid $\\($p.Id\\)\"; $ok = $false; for \\($i = 0; $i -lt 25; $i++\\) { Start-Sleep -Seconds 1; try { $h = Invoke-RestMethod -Uri http://localhost:4000/health -TimeoutSec 3; Write-Output \\(\"health: \" + \\($h | ConvertTo-Json -Compress\\)\\); $ok = $true; break } catch {} }; if \\(-not $ok\\) { Write-Output \"health check failed\"; Get-Content \"$log\\\\api.log\" -Tail 15; Get-Content \"$log\\\\api-err.log\" -Tail 15 })",
+      "Bash(node tests/smoke/smoke_live.test.js)",
+      "PowerShell($log = \"C:\\\\Users\\\\ChalukyaS\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ChalukyaS-OneDrive---Onyx-Technology--LLC-Documents-Default-Project\\\\a1217be7-fa79-4ac8-83f8-a14487267068\\\\scratchpad\"; $client = \"C:\\\\Users\\\\ChalukyaS\\\\OneDrive - Onyx Technology, LLC\\\\Documents\\\\Default Project\\\\client\"; $p = Start-Process -FilePath \"cmd.exe\" -ArgumentList \"/c npx vite --port 5173 --strictPort\" -WorkingDirectory $client -WindowStyle Hidden -RedirectStandardOutput \"$log\\\\vite.log\" -RedirectStandardError \"$log\\\\vite-err.log\" -PassThru; Write-Output \"vite pid $\\($p.Id\\)\"; $ok=$false; for \\($i=0; $i -lt 30; $i++\\) { Start-Sleep -Seconds 1; try { $r = Invoke-WebRequest -Uri http://localhost:5173/ -TimeoutSec 3 -UseBasicParsing; if \\($r.StatusCode -eq 200\\) { Write-Output \"vite up\"; $ok=$true; break } } catch {} }; if \\(-not $ok\\) { Get-Content \"$log\\\\vite.log\" -Tail 10; Get-Content \"$log\\\\vite-err.log\" -Tail 10 })",
+      "Read(//c/Users/ChalukyaS/AppData/Local/Temp/claude/c--Users-ChalukyaS-OneDrive---Onyx-Technology--LLC-Documents-Default-Project/a1217be7-fa79-4ac8-83f8-a14487267068/scratchpad/**)",
+      "Bash(node shoot.cjs)",
+      "Bash(npx jest *)",
+      "Read(//c/Users/ChalukyaS/OneDrive - Onyx Technology, LLC/Documents/**)",
+      "PowerShell($log = \"C:\\\\Users\\\\ChalukyaS\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ChalukyaS-OneDrive---Onyx-Technology--LLC-Documents-Default-Project\\\\a1217be7-fa79-4ac8-83f8-a14487267068\\\\scratchpad\"; Stop-Process -Id 900 -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 1; $p = Start-Process node -ArgumentList \"src/index.js\" -WorkingDirectory \"C:\\\\Users\\\\ChalukyaS\\\\OneDrive - Onyx Technology, LLC\\\\Documents\\\\Default Project\\\\server\" -WindowStyle Hidden -RedirectStandardOutput \"$log\\\\api2.log\" -RedirectStandardError \"$log\\\\api2-err.log\" -PassThru; Write-Output \"api pid $\\($p.Id\\)\"; for \\($i=0; $i -lt 25; $i++\\) { Start-Sleep -Seconds 1; try { $h = Invoke-RestMethod -Uri http://localhost:4000/health -TimeoutSec 3; Write-Output \\(\"health: \" + $h.status\\); break } catch {} })",
+      "Bash(node verify.cjs)",
+      "PowerShell(Stop-Process -Id 34648 -Force -ErrorAction SilentlyContinue; Stop-Process -Id 40608 -Force -ErrorAction SilentlyContinue; Get-Process node -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -match 'vite|src/index.js' } | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep 1; $left = \\(Get-Process node -ErrorAction SilentlyContinue | Measure-Object\\).Count; Write-Output \"node processes still running: $left\"; docker ps --format '{{.Names}} {{.Status}}' | Select-String ai-ba)",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue | Select-Object Id, StartTime, @{n='Cmd';e={ \\(Get-CimInstance Win32_Process -Filter \"ProcessId=$\\($_.Id\\)\"\\).CommandLine }} | Format-Table -AutoSize -Wrap | Out-String -Width 200)",
+      "PowerShell(Stop-Process -Id 23004,39796 -Force -ErrorAction SilentlyContinue; Start-Sleep 1; Write-Output \"node processes left: $\\(\\(Get-Process node -ErrorAction SilentlyContinue | Measure-Object\\).Count\\)\")",
+      "Bash(mkdir -p docs/assets)",
+      "Bash(cp __TRACKED_VAR__/14-workspace-light.png docs/assets/workspace.png)",
+      "Bash(cp __TRACKED_VAR__/13-dashboard-light.png docs/assets/dashboard.png)",
+      "Bash(cp __TRACKED_VAR__/07-result-light.png docs/assets/result-dark.png)",
+      "Bash(cp __TRACKED_VAR__/10-preview-modal.png docs/assets/preview.png)",
+      "Bash(node docs/render-pdf.cjs)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ChalukyaS\\OneDrive - Onyx Technology, LLC\\Documents\\Default Project",
+      "C:\\Users\\ChalukyaS\\AppData\\Local\\Temp\\claude\\c--Users-ChalukyaS-OneDrive---Onyx-Technology--LLC-Documents-Default-Project\\a1217be7-fa79-4ac8-83f8-a14487267068\\scratchpad"
+    ]
+  }
+}

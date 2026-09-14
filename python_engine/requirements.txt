@@ -1,0 +1,2 @@
+python-calamine>=0.2
+pytest>=8.0
